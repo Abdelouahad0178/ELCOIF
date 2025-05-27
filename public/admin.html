@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -28,7 +28,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             padding: 30px;
             text-align: center;
@@ -85,7 +85,7 @@
         }
 
         .status-offline {
-            background: #f39c12;
+            background: #e74c3c;
         }
 
         @keyframes pulse {
@@ -95,25 +95,48 @@
         }
 
         .admin-nav {
-            background: #2c3e50;
-            color: white;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: center;
             padding: 20px 0;
-            text-align: center;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         .admin-nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: rgba(255,255,255,0.1);
+            flex: 0 1 auto;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6c757d;
             transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
         }
 
-        .admin-nav a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
+        .admin-nav a.active {
+            color: #3498db;
+            background: white;
+        }
+
+        .admin-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+        }
+
+        .admin-nav a:hover:not(.active) {
+            background: #e9ecef;
+            color: #495057;
         }
 
         .content {
@@ -128,7 +151,7 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            background: white;
             padding: 25px;
             border-radius: 15px;
             text-align: center;
@@ -139,19 +162,34 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #e74c3c;
+            color: #3498db;
             margin-bottom: 5px;
         }
 
         .stat-label {
             color: #6c757d;
             font-weight: 600;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-bar input {
+            max-width: 300px;
         }
 
         .filters {
@@ -161,7 +199,7 @@
             margin-bottom: 30px;
             display: flex;
             gap: 15px;
-            align-items: center;
+            align-items: flex-end;
             flex-wrap: wrap;
         }
 
@@ -169,6 +207,7 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
+            min-width: 150px;
         }
 
         .filter-group label {
@@ -179,9 +218,8 @@
 
         .appointments-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
-            margin-top: 30px;
         }
 
         .appointment-card {
@@ -228,7 +266,7 @@
         .appointment-info strong {
             color: #2c3e50;
             display: inline-block;
-            width: 100px;
+            width: 120px;
         }
 
         .appointment-actions {
@@ -238,46 +276,51 @@
         }
 
         .btn {
-            padding: 10px 20px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 15px 30px;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             font-weight: 600;
             transition: all 0.3s ease;
-            flex: 1;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
         }
 
         .btn-success {
             background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
-            color: white;
             box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
         }
 
         .btn-success:hover {
-            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
         }
 
         .btn-danger {
             background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
             box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
         }
 
         .btn-danger:hover {
-            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
         }
 
         .btn-secondary {
             background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
-            color: white;
             box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
         }
 
         .btn-secondary:hover {
-            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
         }
 
@@ -313,41 +356,6 @@
             border: 1px solid #f5c6cb;
         }
 
-        .admin-tools {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            border: 1px solid #dee2e6;
-        }
-
-        .admin-tools h3 {
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        .admin-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 10px 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #fff;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #e74c3c;
-            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
-        }
-
         .notification {
             position: fixed;
             top: 20px;
@@ -378,28 +386,268 @@
             border-left: 4px solid #3498db;
         }
 
-        .search-bar {
-            background: white;
+        .admin-tools {
+            margin-top: 30px;
             padding: 20px;
+            background: #f8f9fa;
             border-radius: 15px;
+            border: 1px solid #dee2e6;
+        }
+
+        .admin-tools h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .admin-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .messages-dashboard {
+            display: flex;
+            gap: 20px;
+            height: 600px;
+        }
+
+        .conversations-list {
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .conversations-list h3 {
             margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            color: #2c3e50;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
         }
 
-        .search-bar input {
-            max-width: 300px;
-            margin-right: 10px;
+        .conversation-item {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            position: relative;
         }
 
-        .empty-state {
+        .conversation-item:hover {
+            background: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .conversation-item.active {
+            background: #f8f9ff;
+            border-color: #3498db;
+        }
+
+        .conversation-phone {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .conversation-preview {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .conversation-time {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .conversation-unread {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .chat-area {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.client {
+            background: white;
+            color: #2c3e50;
+            align-self: flex-start;
+            border: 1px solid #e9ecef;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.salon {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .message.client .message-time {
+            text-align: left;
+        }
+
+        .message.salon .message-time {
+            text-align: right;
+        }
+
+        .chat-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .input-container textarea {
+            flex: 1;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            padding: 12px 18px;
+            resize: none;
+            font-family: inherit;
+            max-height: 100px;
+        }
+
+        .input-container textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: none;
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-send span {
+            font-size: 1.2rem;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .empty-state, .empty-messages {
             text-align: center;
             padding: 60px 20px;
             color: #6c757d;
         }
 
-        .empty-state h3 {
+        .empty-state h3, .empty-messages h3 {
             margin-bottom: 10px;
             color: #2c3e50;
+        }
+
+        .unread-messages {
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            margin-left: 8px;
         }
 
         @media (max-width: 768px) {
@@ -407,15 +655,15 @@
                 margin: 10px;
                 border-radius: 15px;
             }
-            
+
             .content {
                 padding: 20px;
             }
-            
+
             .appointments-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .header h1 {
                 font-size: 2rem;
             }
@@ -436,6 +684,22 @@
             .admin-buttons {
                 flex-direction: column;
             }
+
+            .messages-dashboard {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .conversations-list {
+                width: 100%;
+                margin-bottom: 20px;
+                max-height: 300px;
+            }
+
+            .chat-area {
+                width: 100%;
+                min-height: 500px;
+            }
         }
     </style>
 </head>
@@ -451,11 +715,12 @@
         </div>
 
         <div class="admin-nav">
-            <a href="#" onclick="showAllAppointments()">Tous les RDV</a>
+            <a href="#" onclick="showAllAppointments()" class="active">Tous les RDV</a>
             <a href="#" onclick="showPendingAppointments()">En attente</a>
             <a href="#" onclick="showConfirmedAppointments()">Confirmés</a>
             <a href="#" onclick="showCancelledAppointments()">Annulés</a>
             <a href="#" onclick="showTodayAppointments()">Aujourd'hui</a>
+            <a href="#" onclick="showMessages()">Messages</a>
         </div>
 
         <div class="content">
@@ -486,8 +751,8 @@
             <!-- Barre de recherche -->
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Rechercher par nom, téléphone..." onkeyup="filterAppointments()">
-                <button class="btn btn-secondary" onclick="filterAppointments()">🔍 Rechercher</button>
-                <button class="btn btn-secondary" onclick="clearSearch()">✖️ Effacer</button>
+                <button class="btn btn-small" onclick="filterAppointments()">🔍 Rechercher</button>
+                <button class="btn btn-secondary btn-small" onclick="clearSearch()">✖️ Effacer</button>
             </div>
 
             <!-- Filtres -->
@@ -526,6 +791,43 @@
                 <!-- Les rendez-vous seront affichés ici -->
             </div>
 
+            <!-- Section Messages -->
+            <div id="messagesSection" style="display: none;">
+                <div class="messages-dashboard">
+                    <div class="conversations-list">
+                        <h3>💬 Conversations</h3>
+                        <div id="conversationsList">
+                            <!-- Liste des conversations -->
+                        </div>
+                    </div>
+                    
+                    <div class="chat-area" id="chatArea" style="display: none;">
+                        <div class="chat-container">
+                            <div class="chat-header">
+                                <div>
+                                    <h3 id="chatClientName">Client</h3>
+                                    <span id="chatClientPhone" style="opacity: 0.8;"></span>
+                                </div>
+                                <button class="btn btn-secondary btn-small" onclick="closeChat()">✖️ Fermer</button>
+                            </div>
+                            
+                            <div class="chat-messages" id="adminChatMessages">
+                                <!-- Messages -->
+                            </div>
+                            
+                            <div class="chat-input">
+                                <div class="input-container">
+                                    <textarea id="adminMessageInput" placeholder="Répondre au client..." rows="2"></textarea>
+                                    <button class="btn-send" onclick="sendAdminMessage()">
+                                        <span>📤</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Outils d'administration -->
             <div class="admin-tools">
                 <h3>Outils d'administration</h3>
@@ -560,6 +862,7 @@
         let db = null;
         let firebaseEnabled = false;
         let appointmentsListener = null;
+        let messagesListener = null;
 
         // Services disponibles
         const services = [
@@ -575,6 +878,10 @@
         let appointments = [];
         let filteredAppointments = [];
         let currentFilter = 'all';
+        let messages = [];
+        let conversations = [];
+        let currentChatPhone = '';
+        let currentSection = 'appointments';
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
@@ -585,7 +892,9 @@
             updateFirebaseStatus(false, 'Connexion...');
             await initializeFirebase();
             await loadAppointments();
+            await loadAllMessages();
             updateStats();
+            setupAdminMessageInput();
         }
 
         // Initialisation Firebase
@@ -661,7 +970,6 @@
                     updateStats();
                     filterAppointments();
                 }
-
             } catch (error) {
                 console.error('Erreur lors du chargement des rendez-vous:', error);
                 appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
@@ -684,7 +992,7 @@
             document.getElementById('pendingAppointments').textContent = pending;
             document.getElementById('confirmedAppointments').textContent = confirmed;
             document.getElementById('todayAppointments').textContent = todayAppointments;
-            document.getElementById('totalRevenue').textContent = totalRevenue + 'dhs';
+            document.getElementById('totalRevenue').textContent = totalRevenue + ' dhs';
         }
 
         function filterAppointments() {
@@ -697,7 +1005,7 @@
                 // Filtre de recherche
                 const matchesSearch = !searchTerm || 
                     apt.clientName.toLowerCase().includes(searchTerm) ||
-                    apt.clientPhone.includes(searchTerm) ||
+                    apt.clientPhone.replace(/\s/g, '').includes(searchTerm) ||
                     (apt.clientEmail && apt.clientEmail.toLowerCase().includes(searchTerm));
 
                 // Filtre par date
@@ -765,7 +1073,7 @@
             };
 
             const createdDate = appointment.createdAt ? 
-                new Date(appointment.createdAt).toLocaleDateString('fr-FR', {
+                new Date(appointment.createdAt).toLocaleString('fr-FR', {
                     day: '2-digit',
                     month: '2-digit',
                     year: 'numeric',
@@ -811,7 +1119,7 @@
                 </div>
                 ${appointment.cancelledAt ? `
                 <div class="appointment-info" style="font-size: 0.9rem; color: #e74c3c;">
-                    <strong>❌ Annulé le:</strong> ${new Date(appointment.cancelledAt).toLocaleDateString('fr-FR', {
+                    <strong>❌ Annulé le:</strong> ${new Date(appointment.cancelledAt).toLocaleString('fr-FR', {
                         day: '2-digit',
                         month: '2-digit',
                         year: 'numeric',
@@ -822,24 +1130,24 @@
                 ` : ''}
                 <div class="appointment-actions">
                     ${appointment.status === 'pending' ? `
-                        <button class="btn btn-success" onclick="confirmAppointment('${appointment.id}')">
+                        <button class="btn btn-success btn-small" onclick="confirmAppointment('${appointment.id}')">
                             ✅ Confirmer
                         </button>
-                        <button class="btn btn-danger" onclick="cancelAppointment('${appointment.id}')">
+                        <button class="btn btn-danger btn-small" onclick="cancelAppointment('${appointment.id}')">
                             ❌ Refuser
                         </button>
                     ` : appointment.status === 'confirmed' ? `
-                        <button class="btn btn-danger" onclick="cancelAppointment('${appointment.id}')">
+                        <button class="btn btn-danger btn-small" onclick="cancelAppointment('${appointment.id}')">
                             ❌ Annuler
                         </button>
-                        <button class="btn btn-secondary" onclick="editAppointment('${appointment.id}')">
+                        <button class="btn btn-secondary btn-small" onclick="editAppointment('${appointment.id}')">
                             ✏️ Modifier
                         </button>
                     ` : `
-                        <button class="btn btn-secondary" onclick="restoreAppointment('${appointment.id}')" ${appointment.cancelledBy === 'admin' ? '' : 'disabled'}>
+                        <button class="btn btn-secondary btn-small" onclick="restoreAppointment('${appointment.id}')" ${appointment.cancelledBy === 'admin' ? '' : 'disabled'}>
                             🔄 Restaurer
                         </button>
-                        <button class="btn btn-danger" onclick="deleteAppointment('${appointment.id}')">
+                        <button class="btn btn-danger btn-small" onclick="deleteAppointment('${appointment.id}')">
                             🗑️ Supprimer
                         </button>
                     `}
@@ -860,7 +1168,6 @@
                     console.log('✅ Rendez-vous confirmé sur Firebase');
                     showNotification('Rendez-vous confirmé avec succès !', 'success');
                 } else {
-                    // Mise à jour localStorage
                     const localAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
                     const updatedAppointments = localAppointments.map(apt => 
                         apt.id === appointmentId ? {
@@ -896,7 +1203,6 @@
                     console.log('✅ Rendez-vous annulé sur Firebase');
                     showNotification('Rendez-vous annulé avec succès !', 'info');
                 } else {
-                    // Mise à jour localStorage
                     const localAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
                     const updatedAppointments = localAppointments.map(apt => 
                         apt.id === appointmentId ? {
@@ -934,7 +1240,6 @@
                     console.log('✅ Rendez-vous restauré sur Firebase');
                     showNotification('Rendez-vous restauré avec succès !', 'success');
                 } else {
-                    // Mise à jour localStorage
                     const localAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
                     const updatedAppointments = localAppointments.map(apt => {
                         if (apt.id === appointmentId) {
@@ -970,7 +1275,6 @@
                     console.log('✅ Rendez-vous supprimé de Firebase');
                     showNotification('Rendez-vous supprimé avec succès !', 'info');
                 } else {
-                    // Suppression localStorage
                     const localAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
                     const updatedAppointments = localAppointments.filter(apt => apt.id !== appointmentId);
                     localStorage.setItem('appointments', JSON.stringify(updatedAppointments));
@@ -1012,7 +1316,6 @@
                     console.log('✅ Rendez-vous modifié sur Firebase');
                     showNotification('Rendez-vous modifié avec succès !', 'success');
                 } else {
-                    // Mise à jour localStorage
                     const localAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
                     const updatedAppointments = localAppointments.map(apt => 
                         apt.id === appointmentId ? { ...apt, ...updates } : apt
@@ -1028,41 +1331,90 @@
             }
         }
 
-        // Fonctions de navigation
         function showAllAppointments() {
             currentFilter = 'all';
+            currentSection = 'appointments';
             document.getElementById('sectionTitle').textContent = 'Tous les rendez-vous';
+            document.getElementById('appointmentsContainer').style.display = 'grid';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.querySelector('.search-bar').style.display = 'flex';
+            document.querySelector('.filters').style.display = 'flex';
             clearFilters();
             filterAppointments();
+            updateNavActive('showAllAppointments');
         }
 
         function showPendingAppointments() {
             currentFilter = 'pending';
+            currentSection = 'appointments';
             document.getElementById('sectionTitle').textContent = 'Rendez-vous en attente';
+            document.getElementById('appointmentsContainer').style.display = 'grid';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.querySelector('.search-bar').style.display = 'flex';
+            document.querySelector('.filters').style.display = 'flex';
             document.getElementById('filterStatus').value = 'pending';
             filterAppointments();
+            updateNavActive('showPendingAppointments');
         }
 
         function showConfirmedAppointments() {
             currentFilter = 'confirmed';
+            currentSection = 'appointments';
             document.getElementById('sectionTitle').textContent = 'Rendez-vous confirmés';
+            document.getElementById('appointmentsContainer').style.display = 'grid';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.querySelector('.search-bar').style.display = 'flex';
+            document.querySelector('.filters').style.display = 'flex';
             document.getElementById('filterStatus').value = 'confirmed';
             filterAppointments();
+            updateNavActive('showConfirmedAppointments');
         }
 
         function showCancelledAppointments() {
             currentFilter = 'cancelled';
+            currentSection = 'appointments';
             document.getElementById('sectionTitle').textContent = 'Rendez-vous annulés';
+            document.getElementById('appointmentsContainer').style.display = 'grid';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.querySelector('.search-bar').style.display = 'flex';
+            document.querySelector('.filters').style.display = 'flex';
             document.getElementById('filterStatus').value = 'cancelled';
             filterAppointments();
+            updateNavActive('showCancelledAppointments');
         }
 
         function showTodayAppointments() {
             currentFilter = 'today';
+            currentSection = 'appointments';
             document.getElementById('sectionTitle').textContent = 'Rendez-vous d\'aujourd\'hui';
+            document.getElementById('appointmentsContainer').style.display = 'grid';
+            document.getElementById('messagesSection').style.display = 'none';
+            document.querySelector('.search-bar').style.display = 'flex';
+            document.querySelector('.filters').style.display = 'flex';
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('filterDate').value = today;
             filterAppointments();
+            updateNavActive('showTodayAppointments');
+        }
+
+        function showMessages() {
+            currentSection = 'messages';
+            document.getElementById('sectionTitle').textContent = 'Messagerie';
+            document.getElementById('appointmentsContainer').style.display = 'none';
+            document.getElementById('messagesSection').style.display = 'block';
+            document.querySelector('.search-bar').style.display = 'none';
+            document.querySelector('.filters').style.display = 'none';
+            loadAllMessages();
+            updateNavActive('showMessages');
+        }
+
+        function updateNavActive(functionName) {
+            document.querySelectorAll('.admin-nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick') === functionName + '()') {
+                    link.classList.add('active');
+                }
+            });
         }
 
         function clearFilters() {
@@ -1077,7 +1429,285 @@
             filterAppointments();
         }
 
-        // Fonctions utilitaires
+        async function loadAllMessages() {
+            try {
+                if (firebaseEnabled && db) {
+                    if (messagesListener) {
+                        messagesListener();
+                    }
+
+                    messagesListener = db.collection('messages')
+                        .orderBy('timestamp', 'desc')
+                        .onSnapshot((snapshot) => {
+                            messages = snapshot.docs.map(doc => ({
+                                id: doc.id,
+                                ...doc.data()
+                            }));
+                            
+                            console.log(`💬 ${messages.length} messages chargés depuis Firebase`);
+                            updateConversations();
+                            updateMessagesCount();
+                        });
+                } else {
+                    messages = JSON.parse(localStorage.getItem('messages') || '[]');
+                    updateConversations();
+                }
+            } catch (error) {
+                console.error('Erreur lors du chargement des messages:', error);
+                messages = JSON.parse(localStorage.getItem('messages') || '[]');
+                updateConversations();
+            }
+        }
+
+        function updateConversations() {
+            const conversationsMap = new Map();
+            
+            messages.forEach(message => {
+                const phone = message.clientPhone;
+                if (!conversationsMap.has(phone)) {
+                    conversationsMap.set(phone, {
+                        clientPhone: phone,
+                        messages: [],
+                        lastMessage: null,
+                        unreadCount: 0
+                    });
+                }
+                conversationsMap.get(phone).messages.push(message);
+            });
+
+            conversations = Array.from(conversationsMap.values()).map(conv => {
+                conv.messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+                conv.lastMessage = conv.messages[conv.messages.length - 1];
+                conv.unreadCount = conv.messages.filter(msg => 
+                    msg.sender === 'client' && !msg.read
+                ).length;
+                return conv;
+            });
+
+            conversations.sort((a, b) => {
+                if (!a.lastMessage) return 1;
+                if (!b.lastMessage) return -1;
+                return new Date(b.lastMessage.timestamp) - new Date(a.lastMessage.timestamp);
+            });
+
+            displayConversations();
+        }
+
+        function displayConversations() {
+            const container = document.getElementById('conversationsList');
+            
+            if (conversations.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-messages">
+                        <h3>💬 Aucune conversation</h3>
+                        <p>Les messages des clients apparaîtront ici.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            
+            conversations.forEach(conv => {
+                const conversationDiv = document.createElement('div');
+                conversationDiv.className = 'conversation-item';
+                conversationDiv.onclick = () => openChat(conv.clientPhone);
+                
+                if (conv.clientPhone === currentChatPhone) {
+                    conversationDiv.classList.add('active');
+                }
+
+                const lastMessageTime = conv.lastMessage ? 
+                    new Date(conv.lastMessage.timestamp).toLocaleString('fr-FR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }) : '';
+
+                const lastMessagePreview = conv.lastMessage ? 
+                    (conv.lastMessage.content.length > 40 ? 
+                        conv.lastMessage.content.substring(0, 40) + '...' : 
+                        conv.lastMessage.content) : 
+                    'Aucun message';
+
+                conversationDiv.innerHTML = `
+                    <div class="conversation-phone">${conv.clientPhone}</div>
+                    <div class="conversation-preview">${lastMessagePreview}</div>
+                    <div class="conversation-time">${lastMessageTime}</div>
+                    ${conv.unreadCount > 0 ? `<div class="conversation-unread">${conv.unreadCount}</div>` : ''}
+                `;
+                
+                container.appendChild(conversationDiv);
+            });
+        }
+
+        function openChat(clientPhone) {
+            currentChatPhone = clientPhone;
+            
+            const conversation = conversations.find(conv => conv.clientPhone === clientPhone);
+            if (!conversation) return;
+
+            document.getElementById('chatArea').style.display = 'flex';
+            document.getElementById('chatClientName').textContent = `Chat avec le client`;
+            document.getElementById('chatClientPhone').textContent = clientPhone;
+            
+            displayChatMessages(conversation.messages);
+            displayConversations();
+            markClientMessagesAsRead(clientPhone);
+        }
+
+        function displayChatMessages(chatMessages) {
+            const container = document.getElementById('adminChatMessages');
+            container.innerHTML = '';
+
+            if (chatMessages.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; color: #6c757d; margin: 40px 0;">
+                        <h4>💬 Nouvelle conversation</h4>
+                        <p>Commencez à discuter avec ce client.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            chatMessages.forEach(message => {
+                const messageElement = createAdminMessageElement(message);
+                container.appendChild(messageElement);
+            });
+
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function createAdminMessageElement(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${message.sender}`;
+            
+            const time = new Date(message.timestamp).toLocaleString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            messageDiv.innerHTML = `
+                <div class="message-content">${message.content}</div>
+                <div class="message-time">${time}</div>
+            `;
+
+            return messageDiv;
+        }
+
+        async function sendAdminMessage() {
+            const messageInput = document.getElementById('adminMessageInput');
+            const content = messageInput.value.trim();
+            
+            if (!content) return;
+            if (!currentChatPhone) {
+                showNotification('Veuillez sélectionner une conversation.', 'error');
+                return;
+            }
+
+            const messageData = {
+                clientPhone: currentChatPhone,
+                sender: 'salon',
+                content: content,
+                timestamp: new Date().toISOString(),
+                read: false
+            };
+
+            try {
+                if (firebaseEnabled && db) {
+                    await db.collection('messages').add(messageData);
+                    console.log('✅ Message admin envoyé sur Firebase');
+                } else {
+                    const localMessages = JSON.parse(localStorage.getItem('messages') || '[]');
+                    messageData.id = Date.now().toString();
+                    localMessages.push(messageData);
+                    localStorage.setItem('messages', JSON.stringify(localMessages));
+                    console.log('💾 Message admin envoyé localement');
+                    messages.push(messageData);
+                    updateConversations();
+                    const conversation = conversations.find(conv => conv.clientPhone === currentChatPhone);
+                    if (conversation) {
+                        displayChatMessages(conversation.messages);
+                    }
+                }
+
+                messageInput.value = '';
+                showNotification('Message envoyé !', 'success');
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi du message:', error);
+                showNotification('Erreur lors de l\'envoi du message.', 'error');
+            }
+        }
+
+        async function markClientMessagesAsRead(clientPhone) {
+            if (!firebaseEnabled || !db) return;
+
+            try {
+                const conversation = conversations.find(conv => conv.clientPhone === clientPhone);
+                if (!conversation) return;
+
+                const unreadClientMessages = conversation.messages.filter(msg => 
+                    msg.sender === 'client' && !msg.read
+                );
+                
+                if (unreadClientMessages.length === 0) return;
+
+                const batch = db.batch();
+                unreadClientMessages.forEach(msg => {
+                    const msgRef = db.collection('messages').doc(msg.id);
+                    batch.update(msgRef, { read: true });
+                });
+                
+                await batch.commit();
+                console.log(`✅ ${unreadClientMessages.length} messages marqués comme lus`);
+            } catch (error) {
+                console.error('Erreur lors du marquage des messages comme lus:', error);
+            }
+        }
+
+        function updateMessagesCount() {
+            const totalUnread = conversations.reduce((sum, conv) => sum + conv.unreadCount, 0);
+            
+            const messagesLink = document.querySelector('a[onclick="showMessages()"]');
+            const existingBadge = messagesLink.querySelector('.unread-messages');
+            
+            if (existingBadge) {
+                existingBadge.remove();
+            }
+            
+            if (totalUnread > 0) {
+                const badge = document.createElement('span');
+                badge.className = 'unread-messages';
+                badge.textContent = totalUnread;
+                messagesLink.appendChild(badge);
+            }
+        }
+
+        function closeChat() {
+            document.getElementById('chatArea').style.display = 'none';
+            currentChatPhone = '';
+            displayConversations();
+        }
+
+        function setupAdminMessageInput() {
+            const messageInput = document.getElementById('adminMessageInput');
+            
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendAdminMessage();
+                }
+            });
+
+            messageInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+            });
+        }
+
         function formatDate(dateString) {
             const date = new Date(dateString);
             return date.toLocaleDateString('fr-FR', {
@@ -1112,7 +1742,6 @@
             }, 4000);
         }
 
-        // Fonctions d'administration
         async function testFirebaseConnection() {
             const statusText = document.getElementById('statusText');
             const originalText = statusText.textContent;
@@ -1123,37 +1752,42 @@
                     throw new Error('Firebase non initialisé');
                 }
                 
-                // Test d'écriture
                 const testDoc = await db.collection('test').add({
                     timestamp: new Date(),
                     test: true
                 });
                 
-                // Test de lecture
                 await db.collection('test').doc(testDoc.id).get();
-                
-                // Supprimer le document de test
                 await db.collection('test').doc(testDoc.id).delete();
                 
                 showNotification('Test Firebase réussi ! La connexion fonctionne parfaitement.', 'success');
                 updateFirebaseStatus(true, 'Firebase connecté');
                 firebaseEnabled = true;
-                
             } catch (error) {
                 console.error('❌ Test Firebase échoué:', error);
                 showNotification('Test Firebase échoué : ' + error.message, 'error');
                 updateFirebaseStatus(false, 'Erreur Firebase');
                 firebaseEnabled = false;
+            } finally {
+                setTimeout(() => {
+                    statusText.textContent = originalText;
+                }, 2000);
             }
         }
 
         function exportData() {
-            const dataStr = JSON.stringify(appointments, null, 2);
+            const dataToExport = {
+                appointments: appointments,
+                messages: messages,
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(dataToExport, null, 2);
             const dataBlob = new Blob([dataStr], {type: 'application/json'});
             const url = URL.createObjectURL(dataBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'rendez-vous-export-' + new Date().toISOString().split('T')[0] + '.json';
+            link.download = 'salon-elcoif-export-' + new Date().toISOString().split('T')[0] + '.json';
             link.click();
             showNotification('Données exportées avec succès !', 'success');
         }
@@ -1166,13 +1800,26 @@
             reader.onload = function(e) {
                 try {
                     const importedData = JSON.parse(e.target.result);
-                    if (confirm(`Êtes-vous sûr de vouloir importer ${importedData.length} rendez-vous ? Cela remplacera les données locales.`)) {
-                        localStorage.setItem('appointments', JSON.stringify(importedData));
+                    
+                    if (!importedData.appointments && !Array.isArray(importedData)) {
+                        throw new Error('Format de données invalide');
+                    }
+
+                    const appointmentsToImport = importedData.appointments || importedData;
+                    const messagesToImport = importedData.messages || [];
+
+                    if (confirm(`Êtes-vous sûr de vouloir importer ${appointmentsToImport.length} rendez-vous et ${messagesToImport.length} messages ? Cela remplacera les données locales.`)) {
+                        localStorage.setItem('appointments', JSON.stringify(appointmentsToImport));
+                        if (messagesToImport.length > 0) {
+                            localStorage.setItem('messages', JSON.stringify(messagesToImport));
+                        }
+                        
                         loadAppointments();
-                        showNotification(`${importedData.length} rendez-vous importés avec succès !`, 'success');
+                        loadAllMessages();
+                        showNotification(`${appointmentsToImport.length} rendez-vous et ${messagesToImport.length} messages importés avec succès !`, 'success');
                     }
                 } catch (error) {
-                    showNotification('Erreur lors de l\'importation des données.', 'error');
+                    showNotification('Erreur lors de l\'importation des données : ' + error.message, 'error');
                     console.error(error);
                 }
             };
@@ -1186,22 +1833,38 @@
             
             localStorage.clear();
             appointments = [];
+            messages = [];
+            conversations = [];
             updateStats();
             filterAppointments();
+            updateConversations();
             showNotification('Toutes les données locales ont été supprimées.', 'info');
         }
 
-        // Nettoyage à la fermeture de la page
         window.addEventListener('beforeunload', function() {
             if (appointmentsListener) {
                 appointmentsListener();
             }
+            if (messagesListener) {
+                messagesListener();
+            }
         });
 
-        // Mise à jour automatique des statistiques
         setInterval(() => {
-            updateStats();
-        }, 30000); // Toutes les 30 secondes
+            if (currentSection === 'appointments') {
+                updateStats();
+            }
+        }, 30000);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter' && currentSection === 'messages') {
+                sendAdminMessage();
+            }
+            
+            if (e.key === 'Escape' && currentChatPhone) {
+                closeChat();
+            }
+        });
     </script>
 </body>
 </html>

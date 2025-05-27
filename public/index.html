@@ -432,6 +432,201 @@
             border-left: 4px solid #3498db;
         }
 
+        .chat-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            overflow: hidden;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .chat-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .message.client {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message.salon {
+            background: white;
+            color: #2c3e50;
+            align-self: flex-start;
+            border: 1px solid #e9ecef;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .message.client .message-time {
+            text-align: right;
+        }
+
+        .message.salon .message-time {
+            text-align: left;
+        }
+
+        .chat-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .input-container textarea {
+            flex: 1;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            padding: 12px 18px;
+            resize: none;
+            font-family: inherit;
+            max-height: 100px;
+        }
+
+        .input-container textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: none;
+        }
+
+        .btn-send {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-send span {
+            font-size: 1.2rem;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #e9ecef;
+            align-self: flex-start;
+            max-width: 70%;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #6c757d;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .message-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .unread-messages {
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            margin-left: 8px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -478,6 +673,7 @@
         <div class="tabs">
             <button class="tab active" onclick="showTab('booking')">Prendre RDV</button>
             <button class="tab" onclick="showTab('appointments')">Mes Rendez-vous</button>
+            <button class="tab" onclick="showTab('messages')">Messages</button>
         </div>
 
         <div class="tab-content">
@@ -545,6 +741,42 @@
                     <!-- Rendez-vous du client seront affichés ici -->
                 </div>
             </div>
+
+            <!-- Onglet Messages -->
+            <div id="messages" class="tab-pane">
+                <h2>Messagerie avec le salon</h2>
+                
+                <div class="form-group">
+                    <label for="messagePhone">Votre numéro de téléphone *</label>
+                    <input type="tel" id="messagePhone" placeholder="06 12 34 56 78" required>
+                    <button class="btn" onclick="loadMessages()" style="margin-top: 15px;">Accéder à mes messages</button>
+                </div>
+
+                <div id="messageArea" style="display: none;">
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <h3>💬 Conversation avec Salon Élégance</h3>
+                            <div class="chat-status" id="chatStatus">
+                                <span class="status-indicator status-online"></span>
+                                En ligne
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Messages seront affichés ici -->
+                        </div>
+                        
+                        <div class="chat-input">
+                            <div class="input-container">
+                                <textarea id="messageInput" placeholder="Tapez votre message..." rows="2"></textarea>
+                                <button class="btn-send" onclick="sendMessage()">
+                                    <span>📤</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -584,6 +816,10 @@
         let selectedTime = '';
         let appointments = [];
         let currentClientPhone = '';
+        let messages = [];
+        let messagesListener = null;
+        let currentMessagePhone = '';
+        let unreadCount = 0;
 
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
@@ -598,7 +834,9 @@
             setupForm();
             setupFormValidation();
             await loadAppointments();
+            setupMessageInput();
         }
+        
 
         // Initialisation Firebase
         async function initializeFirebase() {
@@ -1062,7 +1300,228 @@
             if (appointmentsListener) {
                 appointmentsListener();
             }
+            if (messagesListener) {
+                messagesListener();
+            }
         });
+
+        // Fonctions de messagerie
+        async function loadMessages() {
+            const phoneNumber = document.getElementById('messagePhone').value.trim();
+            
+            if (!phoneNumber) {
+                showNotification('Veuillez saisir votre numéro de téléphone.', 'error');
+                return;
+            }
+
+            currentMessagePhone = phoneNumber;
+            document.getElementById('messageArea').style.display = 'block';
+            
+            try {
+                if (firebaseEnabled && db) {
+                    // Écouter les messages en temps réel
+                    if (messagesListener) {
+                        messagesListener();
+                    }
+
+                    messagesListener = db.collection('messages')
+                        .where('clientPhone', '==', phoneNumber)
+                        .orderBy('timestamp', 'asc')
+                        .onSnapshot((snapshot) => {
+                            messages = snapshot.docs.map(doc => ({
+                                id: doc.id,
+                                ...doc.data()
+                            }));
+                            
+                            displayMessages();
+                            markMessagesAsRead();
+                        });
+                } else {
+                    // Charger depuis localStorage
+                    const localMessages = JSON.parse(localStorage.getItem('messages') || '[]');
+                    messages = localMessages.filter(msg => msg.clientPhone === phoneNumber);
+                    displayMessages();
+                }
+            } catch (error) {
+                console.error('Erreur lors du chargement des messages:', error);
+                showNotification('Erreur lors du chargement des messages.', 'error');
+            }
+        }
+
+        function displayMessages() {
+            const container = document.getElementById('chatMessages');
+            container.innerHTML = '';
+
+            if (messages.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; color: #6c757d; margin: 40px 0;">
+                        <h3>💬 Bienvenue !</h3>
+                        <p>Commencez votre conversation avec notre salon.</p>
+                        <p>Nous sommes là pour répondre à toutes vos questions !</p>
+                    </div>
+                `;
+                return;
+            }
+
+            messages.forEach(message => {
+                const messageElement = createMessageElement(message);
+                container.appendChild(messageElement);
+            });
+
+            // Scroll vers le bas
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function createMessageElement(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${message.sender}`;
+            
+            const time = new Date(message.timestamp).toLocaleString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            messageDiv.innerHTML = `
+                <div class="message-content">${message.content}</div>
+                <div class="message-time">${time}</div>
+            `;
+
+            return messageDiv;
+        }
+
+        async function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const content = messageInput.value.trim();
+            
+            if (!content) return;
+            if (!currentMessagePhone) {
+                showNotification('Veuillez d\'abord accéder à vos messages.', 'error');
+                return;
+            }
+
+            const messageData = {
+                clientPhone: currentMessagePhone,
+                sender: 'client',
+                content: content,
+                timestamp: new Date().toISOString(),
+                read: false
+            };
+
+            try {
+                if (firebaseEnabled && db) {
+                    await db.collection('messages').add(messageData);
+                    console.log('✅ Message envoyé sur Firebase');
+                } else {
+                    // Sauvegarder localement
+                    const localMessages = JSON.parse(localStorage.getItem('messages') || '[]');
+                    messageData.id = Date.now().toString();
+                    localMessages.push(messageData);
+                    localStorage.setItem('messages', JSON.stringify(localMessages));
+                    console.log('💾 Message envoyé localement');
+                    
+                    // Actualiser l'affichage local
+                    messages.push(messageData);
+                    displayMessages();
+                }
+
+                messageInput.value = '';
+                showTypingIndicator();
+
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi du message:', error);
+                showNotification('Erreur lors de l\'envoi du message.', 'error');
+            }
+        }
+
+        function showTypingIndicator() {
+            const container = document.getElementById('chatMessages');
+            
+            // Supprimer l'ancien indicateur s'il existe
+            const existingIndicator = container.querySelector('.typing-indicator');
+            if (existingIndicator) {
+                existingIndicator.remove();
+            }
+
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <span style="color: #6c757d; font-size: 0.9rem;">Le salon est en train d'écrire</span>
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            
+            container.appendChild(typingDiv);
+            container.scrollTop = container.scrollHeight;
+
+            // Retirer l'indicateur après quelques secondes
+            setTimeout(() => {
+                if (typingDiv.parentElement) {
+                    typingDiv.remove();
+                }
+            }, 3000);
+        }
+
+        async function markMessagesAsRead() {
+            if (!firebaseEnabled || !db) return;
+
+            try {
+                const unreadMessages = messages.filter(msg => msg.sender === 'salon' && !msg.read);
+                
+                const batch = db.batch();
+                unreadMessages.forEach(msg => {
+                    const msgRef = db.collection('messages').doc(msg.id);
+                    batch.update(msgRef, { read: true });
+                });
+                
+                if (unreadMessages.length > 0) {
+                    await batch.commit();
+                    updateUnreadCount();
+                }
+            } catch (error) {
+                console.error('Erreur lors du marquage des messages comme lus:', error);
+            }
+        }
+
+        function updateUnreadCount() {
+            const unreadMessages = messages.filter(msg => msg.sender === 'salon' && !msg.read);
+            unreadCount = unreadMessages.length;
+            
+            const messagesTab = document.querySelector('.tab[onclick="showTab(\'messages\')"]');
+            const existingBadge = messagesTab.querySelector('.unread-messages');
+            
+            if (existingBadge) {
+                existingBadge.remove();
+            }
+            
+            if (unreadCount > 0) {
+                const badge = document.createElement('span');
+                badge.className = 'unread-messages';
+                badge.textContent = unreadCount;
+                messagesTab.appendChild(badge);
+            }
+        }
+
+        function setupMessageInput() {
+            const messageInput = document.getElementById('messageInput');
+            
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Auto-resize textarea
+            messageInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+            });
+        }
     </script>
 </body>
 </html>
