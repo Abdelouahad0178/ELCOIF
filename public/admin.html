@@ -819,7 +819,7 @@
                     <div class="stat-label">Aujourd'hui</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number" id="totalRevenue">0€</div>
+                    <div class="stat-number" id="totalRevenue">0 dhs</div>
                     <div class="stat-label">Chiffre d'affaires</div>
                 </div>
             </div>
@@ -1167,7 +1167,7 @@
                 document.getElementById('pendingAppointments').textContent = pending;
                 document.getElementById('confirmedAppointments').textContent = confirmed;
                 document.getElementById('todayAppointments').textContent = todayAppointments;
-                document.getElementById('totalRevenue').textContent = totalRevenue + '€';
+                document.getElementById('totalRevenue').textContent = totalRevenue + ' dhs';
             } catch (error) {
                 console.error('Erreur lors de la mise à jour des statistiques:', error);
                 showNotification('Erreur lors de la mise à jour des statistiques.', 'error');
@@ -1278,7 +1278,7 @@
                     <strong>✂️ Services:</strong> ${serviceNames}
                 </div>
                 <div class="appointment-info">
-                    <strong>💰 Prix:</strong> ${apt.totalPrice || 0}€
+                    <strong>💰 Prix:</strong> ${apt.totalPrice || 0} dhs
                 </div>
                 <div class="appointment-info">
                     <strong>⏰ Durée:</strong> ${apt.totalDuration || 0} min
